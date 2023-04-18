@@ -8,7 +8,7 @@ import streamlit as st
 def generate_facebook_login_url():
     app_id = os.environ['FACEBOOK_APP_ID']
     app_secret = os.environ['FACEBOOK_APP_SECRET']
-    redirect_uri = 'https://your_redirect_url'  # Replace with your redirect URL
+    redirect_uri = 'https://mirrorgpt.streamlit.app/'  # Replace with your redirect URL
 
     # Set the required permissions
     scope = 'email,user_posts'
@@ -16,6 +16,13 @@ def generate_facebook_login_url():
     login_url = f"https://www.facebook.com/v12.0/dialog/oauth?client_id={app_id}&redirect_uri={redirect_uri}&scope={scope}&response_type=code"
 
     return login_url
+
+st.write("Enter the access token you received after logging in:")
+access_token = st.text_input("Access Token")
+
+if access_token:
+        
+
 
 def main():
     st.title("Facebook Streamlit App")
@@ -38,6 +45,26 @@ def main():
             user_posts = graph.get_connections('me', 'posts', fields='id,created_time,message,story', limit=10)
             st.write("User Posts (10 latest):")
             st.json(user_posts)
+
+            st.write("Ask the bot a question:")
+            question = st.text_input("Question")
+
+            if question:
+                try:
+                    # Get user's past Facebook posts
+                    user_posts = get_all_user_posts(access_token)
+
+                    # Process the user's posts and create an index (placeholder)
+                    index = process_and_index_posts(user_posts)
+
+                    # Generate a response based on the user's past posts (placeholder)
+                    response = generate_response(index, question)
+
+                    st.write("Bot's response:")
+                    st.write(response)
+
+                except Exception as e:
+                    st.error(f"Error: {str(e)}")
 
         except Exception as e:
             st.error(f"Error: {str(e)}")
