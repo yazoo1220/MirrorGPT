@@ -17,12 +17,6 @@ def generate_facebook_login_url():
 
     return login_url
 
-st.write("Enter the access token you received after logging in:")
-access_token = st.text_input("Access Token")
-
-if access_token:
-        
-
 
 def main():
     st.title("Facebook Streamlit App")
