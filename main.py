@@ -4,6 +4,9 @@ import requests
 from facebook import GraphAPI
 import streamlit as st
 
+os.environ['FACEBOOK_APP_ID'] = 'your_facebook_app_id'
+os.environ['FACEBOOK_APP_SECRET'] = 'your_facebook_app_secret'
+
 def generate_facebook_login_url():
     app_id = os.environ['FACEBOOK_APP_ID']
     app_secret = os.environ['FACEBOOK_APP_SECRET']
