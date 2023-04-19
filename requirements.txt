@@ -3,3 +3,5 @@ requests
 facebook-sdk
 streamlit_chat
 langchain
+pinecone-client
+tiktoken
