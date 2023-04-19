@@ -1,3 +1,5 @@
 streamlit
 requests
 facebook-sdk
+streamlit_chat
+langchain
